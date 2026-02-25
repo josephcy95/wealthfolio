@@ -8,8 +8,6 @@ use tauri::{AppHandle, Emitter};
 use wealthfolio_core::db;
 
 use crate::context::ServiceContext;
-#[cfg(desktop)]
-use crate::updater::{check_for_update, install_update};
 
 /// Normalize file path by removing file:// URI prefix if present (iOS/Android compatibility)
 fn normalize_file_path(path: &str) -> String {
@@ -59,30 +57,17 @@ pub async fn get_app_info(app_handle: AppHandle) -> Result<AppInfo, String> {
     })
 }
 
-/// Check for updates and return update info if available.
+/// App update checking is disabled and always returns no update.
 #[tauri::command]
-pub async fn check_for_updates(app_handle: AppHandle) -> Result<Option<serde_json::Value>, String> {
-    #[cfg(desktop)]
-    {
-        let instance_id = app_handle
-            .try_state::<std::sync::Arc<ServiceContext>>()
-            .map(|state| state.instance_id.clone())
-            .ok_or_else(|| "Failed to access service context".to_string())?;
-
-        let result = check_for_update(app_handle, &instance_id).await?;
-        Ok(result.map(|info| serde_json::to_value(info).unwrap()))
-    }
-    #[cfg(not(desktop))]
-    {
-        Ok(None)
-    }
+pub async fn check_for_updates(
+    _app_handle: AppHandle,
+) -> Result<Option<serde_json::Value>, String> {
+    Ok(None)
 }
 
-/// Download and install an available update. Shows native dialogs and restarts the app.
+/// Installing app updates is disabled.
 #[tauri::command]
-pub async fn install_app_update(app_handle: AppHandle) -> Result<(), String> {
-    #[cfg(desktop)]
-    install_update(app_handle).await;
+pub async fn install_app_update(_app_handle: AppHandle) -> Result<(), String> {
     Ok(())
 }
 
@@ -187,7 +172,7 @@ pub async fn restore_database(
 
     // Try to get the ServiceContext to perform graceful operations before restore
     if app_handle
-        .try_state::<std::sync::Arc<crate::context::ServiceContext>>()
+        .try_state::<std::sync::Arc<ServiceContext>>()
         .is_some()
     {
         // Give some time for any pending operations to complete

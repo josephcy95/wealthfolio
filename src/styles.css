@@ -726,8 +726,8 @@ number-flow-react.muted-fraction::part(fraction) {
 /* app.css */
 html,
 body {
-  -webkit-user-select: none;
-  user-select: none;
+  -webkit-user-select: auto;
+  user-select: auto;
 }
 
 /* allow selection in editable controls (native behavior) */
@@ -739,7 +739,8 @@ textarea,
   user-select: text;
 }
 
-* Prevent zoom on double tap */ * {
+/* Prevent zoom on double tap */
+* {
   touch-action: manipulation;
 }
 

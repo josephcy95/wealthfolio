@@ -7,7 +7,6 @@ import { Icons } from "@/components/ui/icons";
 import { Separator } from "@/components/ui/separator";
 import { toast } from "@/components/ui/use-toast";
 import { usePlatform } from "@/hooks/use-platform";
-import { useCheckForUpdates } from "@/hooks/use-updater";
 import { SettingsHeader } from "../settings-header";
 
 export default function AboutSettingsPage() {
@@ -15,7 +14,6 @@ export default function AboutSettingsPage() {
   const [dbPath, setDbPath] = useState<string>("");
   const [logsDir, setLogsDir] = useState<string>("");
   const { isMobile } = usePlatform();
-  const checkUpdateMutation = useCheckForUpdates();
 
   useEffect(() => {
     // Use unified command for both desktop and web
@@ -33,12 +31,6 @@ export default function AboutSettingsPage() {
       });
     }
   }, [isMobile]);
-
-  const handleCheckForUpdates = () => {
-    checkUpdateMutation.mutate();
-  };
-
-  const isCheckingUpdate = checkUpdateMutation.isPending;
 
   const handleCopy = async (value: string, label: string) => {
     try {
@@ -74,11 +66,6 @@ export default function AboutSettingsPage() {
               take control of your wealth.
             </p>
             <div className="flex flex-wrap items-center gap-2">
-              {!isMobile && (
-                <Button size="sm" onClick={handleCheckForUpdates} disabled={isCheckingUpdate}>
-                  Check for Update
-                </Button>
-              )}
               <Button
                 asChild
                 variant="outline"

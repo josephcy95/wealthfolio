@@ -4,8 +4,6 @@ use tauri_plugin_dialog::DialogExt;
 
 pub fn create_menu<R: Runtime>(app: &AppHandle<R>) -> Result<Menu<R>, tauri::Error> {
     let app_menu = SubmenuBuilder::new(app, "Wealthfolio")
-        .item(&MenuItemBuilder::with_id("check_for_update", "Check for Update").build(app)?)
-        .separator()
         .item(&MenuItemBuilder::with_id("open_settings", "Settings...").build(app)?)
         .separator()
         .item(&PredefinedMenuItem::hide(app, None).unwrap())
@@ -36,9 +34,6 @@ pub fn create_menu<R: Runtime>(app: &AppHandle<R>) -> Result<Menu<R>, tauri::Err
     let help_menu = SubmenuBuilder::new(app, "Help")
         .item(&MenuItemBuilder::with_id("report_issue", "Report Issue").build(app)?)
         .separator()
-        // Add the new menu item for checking updates
-        .item(&MenuItemBuilder::with_id("check_for_update", "Check for Update").build(app)?)
-        .separator()
         .item(&MenuItemBuilder::with_id("show_about_dialog", "About Wealthfolio").build(app)?)
         .build()?;
 
@@ -52,7 +47,7 @@ pub fn create_menu<R: Runtime>(app: &AppHandle<R>) -> Result<Menu<R>, tauri::Err
     Ok(menu)
 }
 
-pub fn handle_menu_event(app: &AppHandle, instance_id: &str, event_id: &str) {
+pub fn handle_menu_event(app: &AppHandle, event_id: &str) {
     match event_id {
         "open_settings" => {
             if let Some(window) = app.get_webview_window("main") {
@@ -75,34 +70,6 @@ pub fn handle_menu_event(app: &AppHandle, instance_id: &str, event_id: &str) {
                     let _ = window.set_fullscreen(false);
                 }
             }
-        }
-        "check_for_update" => {
-            let app_handle = app.clone();
-            let instance_id = instance_id.to_string();
-            tauri::async_runtime::spawn(async move {
-                match crate::updater::check_for_update(app_handle.clone(), &instance_id).await {
-                    Ok(Some(update_info)) => {
-                        // Update available - emit event for frontend to show dialog
-                        let _ = app_handle.emit("app:update-available", &update_info);
-                    }
-                    Ok(None) => {
-                        // Already up-to-date - show native dialog
-                        app_handle
-                            .dialog()
-                            .message("You're already running the latest version of Wealthfolio.")
-                            .title("No Updates Available")
-                            .show(|_| {});
-                    }
-                    Err(e) => {
-                        // Error - show native dialog
-                        app_handle
-                            .dialog()
-                            .message(format!("Failed to check for updates: {}", e))
-                            .title("Update Check Failed")
-                            .show(|_| {});
-                    }
-                }
-            });
         }
         "show_about_dialog" => {
             let package_info = app.package_info();
