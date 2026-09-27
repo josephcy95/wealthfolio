@@ -1,5 +1,5 @@
 <div align="center">
-  <a href="https://github.com/afadil/wealthfolio">
+  <a href="https://github.com/josephcy95/wealthfolio">
     <img src="public/logo.svg" alt="Logo" width="80" height="80">
   </a>
 
@@ -15,15 +15,9 @@
     ·
     <a href="https://x.com/intent/follow?screen_name=WealthfolioApp">Twitter</a>
     ·
-    <a href="https://github.com/afadil/wealthfolio/releases">Releases</a>
+    <a href="https://github.com/josephcy95/wealthfolio/releases">Releases</a>
   </p>
 </div>
-<div align="center">
-
-[<img src="./public/button-buy-me-a-coffee.png" width="180" alt="Buy me a coffee button"/>](https://www.buymeacoffee.com/afadil)
-
-</div>
-
 <div align="center">
 <a href="https://news.ycombinator.com/item?id=41465735">
   <img
@@ -33,9 +27,6 @@
   />
 </a>
   <a href="https://www.producthunt.com/posts/wealthfolio?embed=true&amp;utm_source=badge-featured&amp;utm_medium=badge&amp;utm_souce=badge-wealthfolio" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=461640&amp;theme=light" alt="Wealthfolio - A boring, Local first, desktop Investment Tracking app | Product Hunt" class="h-[55px] w-[250px]" width="250" height="55"></a>
-
-  <a href="https://trendshift.io/repositories/11701" target="_blank">
-  <img src="https://trendshift.io/api/badge/repositories/11701" alt="afadil%2Fwealthfolio | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
 
 </div>
 
@@ -130,7 +121,7 @@ Ensure you have the following installed on your machine:
 1. **Clone the repository**:
 
    ```bash
-   git clone https://github.com/afadil/wealthfolio.git
+   git clone https://github.com/josephcy95/wealthfolio.git
    cd wealthfolio
    ```
 
@@ -301,10 +292,10 @@ You can either pull the official Docker image or build it yourself locally.
 The latest server build is published to Docker Hub.
 
 ```bash
-docker pull afadil/wealthfolio:latest
+docker pull wealthfolio:latest
 ```
 
-After pulling, use `afadil/wealthfolio:latest` in the run commands below. If you
+After pulling, use `wealthfolio:latest` in the run commands below. If you
 build the image locally, swap the image name back to `wealthfolio`.
 
 ### Building the Image
@@ -360,7 +351,7 @@ See examples below for inline configuration.
 
 ### Running the Container
 
-All examples below use the published image (`afadil/wealthfolio:latest`). If you
+All examples below use the default image (`wealthfolio:latest`). If you
 built locally, substitute your local tag (e.g., `wealthfolio`).
 
 **Using environment file** (recommended):
@@ -371,7 +362,7 @@ docker run --rm -d \
   --env-file .env.docker \
   -p 8088:8088 \
   -v "$(pwd)/wealthfolio-data:/data" \
-  afadil/wealthfolio:latest
+  wealthfolio:latest
 ```
 
 **Basic usage** (inline environment variables):
@@ -383,7 +374,7 @@ docker run --rm -d \
   -e WF_DB_PATH=/data/wealthfolio.db \
   -p 8088:8088 \
   -v "$(pwd)/wealthfolio-data:/data" \
-  afadil/wealthfolio:latest
+  wealthfolio:latest
 ```
 
 **Development mode** (with CORS for local Vite dev server):
@@ -396,7 +387,7 @@ docker run --rm -it \
   -e WF_CORS_ALLOW_ORIGINS=http://localhost:1420 \
   -p 8088:8088 \
   -v "$(pwd)/wealthfolio-data:/data" \
-  afadil/wealthfolio:latest
+  wealthfolio:latest
 ```
 
 **Production with encryption** (recommended):
@@ -409,7 +400,7 @@ docker run --rm -d \
   -e WF_SECRET_KEY=$(openssl rand -base64 32) \
   -p 8088:8088 \
   -v "$(pwd)/wealthfolio-data:/data" \
-  afadil/wealthfolio:latest
+  wealthfolio:latest
 ```
 
 ### Environment Variables
@@ -466,7 +457,7 @@ steps and provides an isolated environment with all necessary dependencies.
 
 1. **Clone the repository** (if you haven't already):
    ```bash
-   git clone https://github.com/afadil/wealthfolio.git
+   git clone https://github.com/josephcy95/wealthfolio.git
    cd wealthfolio
    ```
 2. **Open in VS Code**:
@@ -657,6 +648,6 @@ Contributions are welcome! Please follow these steps:
 
 ## 🌟 Star History
 
-## [![Star History Chart](https://api.star-history.com/svg?repos=afadil/wealthfolio&type=Timeline)](https://star-history.com/#afadil/wealthfolio&Date)
+## [![Star History Chart](https://api.star-history.com/svg?repos=josephcy95/wealthfolio&type=Timeline)](https://star-history.com/#josephcy95/wealthfolio&Date)
 
 Enjoy managing your wealth with **Wealthfolio**! 🚀

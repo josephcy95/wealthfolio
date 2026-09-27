@@ -382,7 +382,7 @@ Wealthfolio Store, contact **wealthfolio@teymz.com**.
     <span class="text-primary">Browse APIs →</span>
   </Card>
   
-  <Card href="https://github.com/afadil/wealthfolio/tree/main/addons/">
+  <Card href="https://github.com/josephcy95/wealthfolio/tree/main/addons/">
     <h3 class="text-lg font-semibold mb-2">💡 Examples</h3>
     <p class="text-muted-foreground mb-4">See real addon implementations</p>
     <span class="text-primary">Browse Examples →</span>

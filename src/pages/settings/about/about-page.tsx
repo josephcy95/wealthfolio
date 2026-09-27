@@ -99,7 +99,7 @@ export default function AboutSettingsPage() {
                 className="inline-flex items-center gap-2"
               >
                 <a
-                  href="https://github.com/afadil/wealthfolio"
+                  href="https://github.com/josephcy95/wealthfolio"
                   target="_blank"
                   rel="noreferrer noopener"
                 >
@@ -183,7 +183,7 @@ export default function AboutSettingsPage() {
                 className="inline-flex items-center gap-2"
               >
                 <a
-                  href="https://github.com/afadil/wealthfolio/issues"
+                  href="https://github.com/josephcy95/wealthfolio/issues"
                   target="_blank"
                   rel="noreferrer noopener"
                 >

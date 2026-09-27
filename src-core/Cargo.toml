@@ -3,7 +3,7 @@ name = "wealthfolio_core"
 version = "2.1.0"
 description = "An Open Source Desktop Portfolio tracker"
 authors = ["Aziz Fadil"]
-repository = "https://github.com/afadil/wealthfolio"
+repository = "https://github.com/josephcy95/wealthfolio"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
